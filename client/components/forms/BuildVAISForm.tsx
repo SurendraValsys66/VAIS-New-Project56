@@ -1176,14 +1176,19 @@ export default function BuildVAISForm() {
                   </div>
 
                   {/* Search Intent Topics */}
-                  <div className="relative">
-                    <Search className="absolute left-3 top-3 h-4 w-4 text-valasys-gray-400" />
-                    <Input
-                      placeholder="Search intent topics..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10"
-                    />
+                  <div>
+                    <Label className="text-sm font-medium text-valasys-gray-700 mb-2 block">
+                      Topics
+                    </Label>
+                    <div className="relative">
+                      <Search className="absolute left-3 top-3 h-4 w-4 text-valasys-gray-400" />
+                      <Input
+                        placeholder="Search intent topics..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="pl-10"
+                      />
+                    </div>
                   </div>
 
                   {/* Filter Dropdowns Side by Side */}

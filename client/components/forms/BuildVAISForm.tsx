@@ -368,6 +368,18 @@ export default function BuildVAISForm() {
   const [newSearchName, setNewSearchName] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Update validation state whenever form data or selected topics change
+  useEffect(() => {
+    setValidationState({
+      step1: formData.productSubcategory && formData.geolocation.length > 0,
+      step2: selectedTopics.length > 0,
+      step3:
+        formData.productSubcategory &&
+        formData.geolocation.length > 0 &&
+        selectedTopics.length > 0,
+    });
+  }, [formData, selectedTopics]);
+
   const filteredTopics = intentTopics.filter(
     (topic) =>
       topic.name.toLowerCase().includes(searchTerm.toLowerCase()) &&

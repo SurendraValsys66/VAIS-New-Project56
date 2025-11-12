@@ -81,7 +81,7 @@ const App = () => (
                 <Route path="/find-prospect" element={<FindProspect />} />
                 <Route path="/prospect-results" element={<ProspectResults />} />
                 <Route
-                  path="/favorites-prospects"
+                  path="/wishlist-prospects"
                   element={<FavoritesProspects />}
                 />
                 <Route path="/build-campaign" element={<BuildCampaign />} />

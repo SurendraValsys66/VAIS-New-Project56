@@ -87,7 +87,9 @@ import { cn, Link } from "@/lib/utils";
 import { FloatingStatsWidget } from "@/components/ui/floating-stats-widget";
 import { markStepCompleted } from "@/lib/masteryStorage";
 import { useToast } from "@/hooks/use-toast";
-import AddToListDialog, { ProspectList } from "@/components/prospects/AddToListDialog";
+import AddToListDialog, {
+  ProspectList,
+} from "@/components/prospects/AddToListDialog";
 
 interface ProspectData {
   id: string;
@@ -672,7 +674,7 @@ export default function ProspectResults() {
           return { ...list, prospects: [...list.prospects, prospectId] };
         }
         return list;
-      })
+      }),
     );
   };
 
@@ -681,7 +683,7 @@ export default function ProspectResults() {
       prev.map((list) => {
         if (list.id === listId) {
           const newProspects = prospectIds.filter(
-            (id) => !list.prospects.includes(id)
+            (id) => !list.prospects.includes(id),
           );
           return {
             ...list,
@@ -689,7 +691,7 @@ export default function ProspectResults() {
           };
         }
         return list;
-      })
+      }),
     );
   };
 
@@ -1932,12 +1934,16 @@ export default function ProspectResults() {
                                                   <Star
                                                     className={cn(
                                                       "w-4 h-4",
-                                                      isProspectInAnyList(prospect.id)
+                                                      isProspectInAnyList(
+                                                        prospect.id,
+                                                      )
                                                         ? "text-yellow-500"
                                                         : "text-gray-500",
                                                     )}
                                                     fill={
-                                                      isProspectInAnyList(prospect.id)
+                                                      isProspectInAnyList(
+                                                        prospect.id,
+                                                      )
                                                         ? "currentColor"
                                                         : "none"
                                                     }
@@ -1945,7 +1951,9 @@ export default function ProspectResults() {
                                                 </Button>
                                               </TooltipTrigger>
                                               <TooltipContent>
-                                                {isProspectInAnyList(prospect.id)
+                                                {isProspectInAnyList(
+                                                  prospect.id,
+                                                )
                                                   ? "Added to list"
                                                   : "Add to list"}
                                               </TooltipContent>

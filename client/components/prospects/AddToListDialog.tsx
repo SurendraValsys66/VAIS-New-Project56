@@ -48,8 +48,13 @@ export default function AddToListDialog({
 
   // Determine if this is a bulk operation
   const isBulk = prospectIds && prospectIds.length > 0;
-  const currentProspectIds = isBulk ? prospectIds : prospectId ? [prospectId] : [];
-  const currentProspectName = prospectName || `${currentProspectIds.length} prospects`;
+  const currentProspectIds = isBulk
+    ? prospectIds
+    : prospectId
+      ? [prospectId]
+      : [];
+  const currentProspectName =
+    prospectName || `${currentProspectIds.length} prospects`;
 
   // Add scrollbar styling
   React.useEffect(() => {
@@ -75,11 +80,13 @@ export default function AddToListDialog({
   }, []);
   const [showCreateList, setShowCreateList] = useState(false);
   const [newListName, setNewListName] = useState("");
-  const [selectedListIds, setSelectedListIds] = useState<Set<string>>(new Set());
+  const [selectedListIds, setSelectedListIds] = useState<Set<string>>(
+    new Set(),
+  );
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredLists = lists.filter((list) =>
-    list.name.toLowerCase().includes(searchTerm.toLowerCase())
+    list.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const handleCreateList = () => {
@@ -174,9 +181,21 @@ export default function AddToListDialog({
           </DialogTitle>
           <DialogDescription>
             {isBulk ? (
-              <>Add <span className="font-semibold text-gray-900">{currentProspectIds.length} prospects</span> to your saved lists</>
+              <>
+                Add{" "}
+                <span className="font-semibold text-gray-900">
+                  {currentProspectIds.length} prospects
+                </span>{" "}
+                to your saved lists
+              </>
             ) : (
-              <>Add <span className="font-semibold text-gray-900">{prospectName}</span> to your saved lists</>
+              <>
+                Add{" "}
+                <span className="font-semibold text-gray-900">
+                  {prospectName}
+                </span>{" "}
+                to your saved lists
+              </>
             )}
           </DialogDescription>
         </DialogHeader>
@@ -208,59 +227,70 @@ export default function AddToListDialog({
                     <div className="space-y-2 p-3 pr-4">
                       {filteredLists.length > 0 ? (
                         filteredLists.map((list) => {
-                        const isSelected = selectedListIds.has(list.id);
-                        // Check how many prospects are already in the list
-                        const newProspectsCount = currentProspectIds.filter(
-                          (id) => !list.prospects.includes(id)
-                        ).length;
-                        const allProspectsAlreadyInList = newProspectsCount === 0;
+                          const isSelected = selectedListIds.has(list.id);
+                          // Check how many prospects are already in the list
+                          const newProspectsCount = currentProspectIds.filter(
+                            (id) => !list.prospects.includes(id),
+                          ).length;
+                          const allProspectsAlreadyInList =
+                            newProspectsCount === 0;
 
-                        return (
-                          <button
-                            key={list.id}
-                            onClick={() => !allProspectsAlreadyInList && handleToggleList(list.id)}
-                            disabled={allProspectsAlreadyInList}
-                            className={cn(
-                              "w-full flex items-center justify-between p-3 rounded-lg border-2 transition-all text-left",
-                              isSelected && !allProspectsAlreadyInList
-                                ? "border-valasys-orange bg-valasys-orange/5"
-                                : allProspectsAlreadyInList
-                                  ? "border-gray-200 bg-gray-50 cursor-not-allowed"
-                                  : "border-gray-200 hover:border-gray-300",
-                            )}
-                          >
-                            <div className="flex-1">
-                              <div className="font-medium text-gray-900">{list.name}</div>
-                              <div className="text-xs text-gray-500">
-                                {isBulk ? (
-                                  <>
-                                    {allProspectsAlreadyInList
-                                      ? `All ${currentProspectIds.length} already in this list`
-                                      : `${newProspectsCount} new to add`}
-                                  </>
-                                ) : (
-                                  <>{list.prospects.length} prospect{list.prospects.length !== 1 ? "s" : ""}</>
-                                )}
+                          return (
+                            <button
+                              key={list.id}
+                              onClick={() =>
+                                !allProspectsAlreadyInList &&
+                                handleToggleList(list.id)
+                              }
+                              disabled={allProspectsAlreadyInList}
+                              className={cn(
+                                "w-full flex items-center justify-between p-3 rounded-lg border-2 transition-all text-left",
+                                isSelected && !allProspectsAlreadyInList
+                                  ? "border-valasys-orange bg-valasys-orange/5"
+                                  : allProspectsAlreadyInList
+                                    ? "border-gray-200 bg-gray-50 cursor-not-allowed"
+                                    : "border-gray-200 hover:border-gray-300",
+                              )}
+                            >
+                              <div className="flex-1">
+                                <div className="font-medium text-gray-900">
+                                  {list.name}
+                                </div>
+                                <div className="text-xs text-gray-500">
+                                  {isBulk ? (
+                                    <>
+                                      {allProspectsAlreadyInList
+                                        ? `All ${currentProspectIds.length} already in this list`
+                                        : `${newProspectsCount} new to add`}
+                                    </>
+                                  ) : (
+                                    <>
+                                      {list.prospects.length} prospect
+                                      {list.prospects.length !== 1 ? "s" : ""}
+                                    </>
+                                  )}
+                                </div>
                               </div>
-                            </div>
-                            {allProspectsAlreadyInList ? (
-                              <div className="flex items-center gap-1 text-xs text-green-600">
-                                <Check className="w-4 h-4" />
-                                All Added
-                              </div>
-                            ) : isSelected ? (
-                              <div className="w-5 h-5 rounded-md bg-valasys-orange flex items-center justify-center">
-                                <Check className="w-3 h-3 text-white" />
-                              </div>
-                            ) : (
-                              <div className="w-5 h-5 rounded-md border-2 border-gray-300" />
-                            )}
-                          </button>
-                        );
+                              {allProspectsAlreadyInList ? (
+                                <div className="flex items-center gap-1 text-xs text-green-600">
+                                  <Check className="w-4 h-4" />
+                                  All Added
+                                </div>
+                              ) : isSelected ? (
+                                <div className="w-5 h-5 rounded-md bg-valasys-orange flex items-center justify-center">
+                                  <Check className="w-3 h-3 text-white" />
+                                </div>
+                              ) : (
+                                <div className="w-5 h-5 rounded-md border-2 border-gray-300" />
+                              )}
+                            </button>
+                          );
                         })
                       ) : (
                         <div className="text-center py-6">
-                          <p className="text-sm text-gray-500">No lists match "{searchTerm}"</p>
+                          <p className="text-sm text-gray-500">
+                            No lists match "{searchTerm}"
+                          </p>
                         </div>
                       )}
                     </div>
@@ -272,7 +302,9 @@ export default function AddToListDialog({
               {lists.length === 0 && (
                 <div className="text-center py-6">
                   <p className="text-sm text-gray-600">No lists created yet</p>
-                  <p className="text-xs text-gray-500 mt-1">Create your first list to get started</p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Create your first list to get started
+                  </p>
                 </div>
               )}
 
@@ -292,7 +324,8 @@ export default function AddToListDialog({
                   onClick={handleAddToSelectedLists}
                   className="w-full bg-valasys-orange hover:bg-valasys-orange/90"
                 >
-                  Add to {selectedListIds.size} List{selectedListIds.size > 1 ? "s" : ""}
+                  Add to {selectedListIds.size} List
+                  {selectedListIds.size > 1 ? "s" : ""}
                 </Button>
               )}
             </>
@@ -301,7 +334,10 @@ export default function AddToListDialog({
               {/* Create List Form */}
               <div className="space-y-4">
                 <div>
-                  <Label htmlFor="list-name" className="text-sm font-semibold text-gray-700">
+                  <Label
+                    htmlFor="list-name"
+                    className="text-sm font-semibold text-gray-700"
+                  >
                     List Name
                   </Label>
                   <Input
@@ -314,7 +350,8 @@ export default function AddToListDialog({
                   />
                 </div>
                 <p className="text-xs text-gray-500">
-                  Create a new list to organize your prospects by categories or campaigns
+                  Create a new list to organize your prospects by categories or
+                  campaigns
                 </p>
               </div>
 

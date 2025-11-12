@@ -29,6 +29,12 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Switch } from "@/components/ui/switch";
+import {
   ArrowLeft,
   Download,
   Filter,
@@ -42,6 +48,7 @@ import {
   ArrowDown,
   ArrowUpDown,
   BarChart3,
+  Maximize,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";

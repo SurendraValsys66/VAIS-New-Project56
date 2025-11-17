@@ -239,13 +239,11 @@ export default function AgreementModal({
 
         <div className="flex-1 flex flex-col overflow-hidden">
           {/* Agreement Content Viewer */}
-          <ScrollArea className="flex-1 bg-white border-0">
-            <div className="p-6">
-              <div className="whitespace-pre-wrap text-sm text-valasys-gray-800 leading-relaxed font-system">
-                {AGREEMENT_CONTENT}
-              </div>
+          <div className="flex-1 overflow-y-auto bg-white border-b">
+            <div className="p-6 text-sm text-valasys-gray-800 leading-relaxed whitespace-pre-wrap">
+              {AGREEMENT_CONTENT}
             </div>
-          </ScrollArea>
+          </div>
 
           {/* Checkboxes Section */}
           <div className="px-6 py-6 border-t bg-white space-y-4">

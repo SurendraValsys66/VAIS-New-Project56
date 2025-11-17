@@ -56,6 +56,7 @@ export default function Settings() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showApiKey, setShowApiKey] = useState(false);
+  const [cancelSubscriptionOpen, setCancelSubscriptionOpen] = useState(false);
   const [notifications, setNotifications] = useState({
     email: true,
     browser: true,

@@ -49,7 +49,59 @@ export default function Login() {
   const [isVerifying, setIsVerifying] = useState(false);
   const [canResendOTP, setCanResendOTP] = useState(false);
   const [resendCountdown, setResendCountdown] = useState(30);
+  const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0);
   const navigate = useNavigate();
+
+  const testimonials = [
+    {
+      id: 1,
+      name: "James Martin",
+      title: "VP Sales, TechCorp",
+      quote: "VAIS completely transformed how we prioritize leads",
+      review: "ROI increased by 40% in just 3 months.",
+      initials: "JM",
+      color: "from-valasys-orange to-valasys-orange-light",
+      rating: 5,
+    },
+    {
+      id: 2,
+      name: "Sarah Rodriguez",
+      title: "Director, Sales Growth",
+      quote: "The AI insights are incredible",
+      review: "We're closing deals 2x faster with better quality leads.",
+      initials: "SR",
+      color: "from-valasys-blue to-valasys-blue-light",
+      rating: 5,
+    },
+    {
+      id: 3,
+      name: "Michael Kim",
+      title: "CEO, Growth Ventures",
+      quote: "Best investment we've made",
+      review: "Immediate impact on pipeline quality and team efficiency.",
+      initials: "MK",
+      color: "from-valasys-green to-valasys-green-light",
+      rating: 5,
+    },
+    {
+      id: 4,
+      name: "Brian M.",
+      title: "Sales Development Rep",
+      quote: "Finding Hot Leads Has Never Been This Easy",
+      review: "I like how Valasys AI tells me which companies are actually ready to hear from us. As an Sales Development Rep, I need to know who to call first. The score makes that super clear. I also like the contact lists—it helps me find the right people in each company so I don't waste time hunting them down.",
+      initials: "BM",
+      color: "from-valasys-orange to-valasys-orange-light",
+      rating: 5,
+    },
+  ];
+
+  const nextTestimonial = () => {
+    setCurrentTestimonialIndex((prev) => (prev + 1) % (testimonials.length - 1));
+  };
+
+  const prevTestimonial = () => {
+    setCurrentTestimonialIndex((prev) => (prev - 1 + (testimonials.length - 1)) % (testimonials.length - 1));
+  };
 
   useEffect(() => {
     setMounted(true);

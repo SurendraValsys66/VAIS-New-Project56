@@ -409,19 +409,6 @@ export function AddPaymentMethodDialog({
 
           {paymentType === "card" && (
             <div className="space-y-6 animate-in fade-in slide-in-from-top-2 duration-300">
-              <div>
-                <label className="block text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
-                  <span className="inline-flex items-center justify-center w-6 h-6 bg-blue-100 text-blue-700 text-xs font-bold rounded-full">1</span>
-                  Card Preview
-                </label>
-                <CardPreview
-                  cardNumber={formData.cardNumber}
-                  cardholderName={formData.cardholderName}
-                  expiryDate={formData.expiryDate}
-                  cardNetwork={cardNetwork}
-                />
-              </div>
-
               <div className="space-y-5">
                 <div>
                   <label className="block text-sm font-bold text-gray-900 mb-2 flex items-center gap-2">

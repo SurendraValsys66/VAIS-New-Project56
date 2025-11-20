@@ -81,6 +81,7 @@ const paymentMethods: PaymentMethod[] = [
     isDefault: true,
     lastUsed: "2025-09-01",
     status: "active",
+    autopayEnabled: true,
   },
   {
     id: "pm_2",
@@ -92,6 +93,7 @@ const paymentMethods: PaymentMethod[] = [
     isDefault: false,
     lastUsed: "2025-07-15",
     status: "active",
+    autopayEnabled: true,
   },
   {
     id: "pm_3",
@@ -103,6 +105,7 @@ const paymentMethods: PaymentMethod[] = [
     isDefault: false,
     lastUsed: "2025-05-02",
     status: "active",
+    autopayEnabled: true,
   },
   {
     id: "pm_4",
@@ -113,6 +116,7 @@ const paymentMethods: PaymentMethod[] = [
     isDefault: false,
     lastUsed: "2025-02-14",
     status: "active",
+    autopayEnabled: true,
   },
 ];
 

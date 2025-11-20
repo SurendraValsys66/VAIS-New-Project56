@@ -409,9 +409,10 @@ export function AddPaymentMethodDialog({
           </div>
 
           {paymentType === "card" && (
-            <div className="space-y-5 animate-in fade-in slide-in-from-top-2 duration-300">
+            <div className="space-y-6 animate-in fade-in slide-in-from-top-2 duration-300">
               <div>
-                <label className="block text-sm font-semibold text-gray-900 mb-3">
+                <label className="block text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
+                  <span className="inline-flex items-center justify-center w-6 h-6 bg-blue-100 text-blue-700 text-xs font-bold rounded-full">1</span>
                   Card Preview
                 </label>
                 <CardPreview
@@ -422,34 +423,35 @@ export function AddPaymentMethodDialog({
                 />
               </div>
 
-              <div className="space-y-4 pt-2">
+              <div className="space-y-5">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  <label className="block text-sm font-bold text-gray-900 mb-2 flex items-center gap-2">
+                    <span className="inline-flex items-center justify-center w-6 h-6 bg-blue-100 text-blue-700 text-xs font-bold rounded-full">2</span>
                     Card Number
                   </label>
-                  <div className="relative">
+                  <div className="relative group">
                     <Input
                       placeholder="1234 1234 1234 1234"
                       value={formData.cardNumber}
                       onChange={handleCardNumberChange}
-                      className={`h-11 text-base font-mono tracking-wider transition-all ${
+                      className={`h-12 text-base font-mono tracking-wider transition-all border-2 focus:ring-2 focus:ring-blue-400 focus:ring-opacity-30 ${
                         getErrorMessage("cardNumber")
                           ? "border-red-500 focus:border-red-500"
-                          : ""
+                          : "border-gray-200 focus:border-blue-500"
                       }`}
                       maxLength={19}
                     />
                     {cardNetwork && (
-                      <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                        <div className="px-3 py-1 bg-gray-100 rounded-lg text-xs font-semibold text-gray-700">
+                      <div className="absolute right-3 top-1/2 transform -translate-y-1/2 animate-fade-in">
+                        <div className="px-3 py-1.5 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg text-xs font-bold text-white shadow-lg">
                           {cardNetwork}
                         </div>
                       </div>
                     )}
                   </div>
                   {getErrorMessage("cardNumber") && (
-                    <div className="flex items-center gap-2 mt-1 text-sm text-red-600">
-                      <AlertCircle className="w-4 h-4" />
+                    <div className="flex items-center gap-2 mt-2 text-sm text-red-600 animate-in fade-in">
+                      <AlertCircle className="w-4 h-4 flex-shrink-0" />
                       <span>{getErrorMessage("cardNumber")}</span>
                     </div>
                   )}
@@ -457,45 +459,41 @@ export function AddPaymentMethodDialog({
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-2">
-                      Expires
-                    </label>
+                    <label className="block text-sm font-bold text-gray-900 mb-2">Expires</label>
                     <Input
                       placeholder="MM/YY"
                       value={formData.expiryDate}
                       onChange={handleExpiryChange}
-                      className={`h-11 text-lg font-mono transition-all ${
+                      className={`h-12 text-lg font-mono font-bold tracking-widest transition-all border-2 focus:ring-2 focus:ring-blue-400 focus:ring-opacity-30 ${
                         getErrorMessage("expiryDate")
                           ? "border-red-500 focus:border-red-500"
-                          : ""
+                          : "border-gray-200 focus:border-blue-500"
                       }`}
                       maxLength={5}
                     />
                     {getErrorMessage("expiryDate") && (
-                      <div className="flex items-center gap-2 mt-1 text-sm text-red-600">
-                        <AlertCircle className="w-4 h-4" />
+                      <div className="flex items-center gap-2 mt-2 text-sm text-red-600 animate-in fade-in">
+                        <AlertCircle className="w-4 h-4 flex-shrink-0" />
                         <span>{getErrorMessage("expiryDate")}</span>
                       </div>
                     )}
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-2">
-                      CVC
-                    </label>
+                    <label className="block text-sm font-bold text-gray-900 mb-2">CVC</label>
                     <Input
                       placeholder="123"
                       value={formData.cvc}
                       onChange={handleCvcChange}
-                      className={`h-11 text-lg font-mono transition-all ${
+                      className={`h-12 text-lg font-mono font-bold tracking-widest transition-all border-2 focus:ring-2 focus:ring-blue-400 focus:ring-opacity-30 ${
                         getErrorMessage("cvc")
                           ? "border-red-500 focus:border-red-500"
-                          : ""
+                          : "border-gray-200 focus:border-blue-500"
                       }`}
                       maxLength={4}
                     />
                     {getErrorMessage("cvc") && (
-                      <div className="flex items-center gap-2 mt-1 text-sm text-red-600">
-                        <AlertCircle className="w-4 h-4" />
+                      <div className="flex items-center gap-2 mt-2 text-sm text-red-600 animate-in fade-in">
+                        <AlertCircle className="w-4 h-4 flex-shrink-0" />
                         <span>{getErrorMessage("cvc")}</span>
                       </div>
                     )}
@@ -503,9 +501,7 @@ export function AddPaymentMethodDialog({
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-2">
-                    Cardholder Name
-                  </label>
+                  <label className="block text-sm font-bold text-gray-900 mb-2">Cardholder Name</label>
                   <Input
                     placeholder="Full name on card"
                     value={formData.cardholderName}
@@ -515,31 +511,29 @@ export function AddPaymentMethodDialog({
                         cardholderName: e.target.value,
                       })
                     }
-                    className={`h-11 transition-all ${
+                    className={`h-12 transition-all border-2 focus:ring-2 focus:ring-blue-400 focus:ring-opacity-30 ${
                       getErrorMessage("cardholderName")
                         ? "border-red-500 focus:border-red-500"
-                        : ""
+                        : "border-gray-200 focus:border-blue-500"
                     }`}
                   />
                   {getErrorMessage("cardholderName") && (
-                    <div className="flex items-center gap-2 mt-1 text-sm text-red-600">
-                      <AlertCircle className="w-4 h-4" />
+                    <div className="flex items-center gap-2 mt-2 text-sm text-red-600 animate-in fade-in">
+                      <AlertCircle className="w-4 h-4 flex-shrink-0" />
                       <span>{getErrorMessage("cardholderName")}</span>
                     </div>
                   )}
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-2">
-                    Country or Region
-                  </label>
+                  <label className="block text-sm font-bold text-gray-900 mb-2">Country or Region</label>
                   <Select
                     value={formData.country}
                     onValueChange={(value) =>
                       setFormData({ ...formData, country: value })
                     }
                   >
-                    <SelectTrigger className="h-11">
+                    <SelectTrigger className="h-12 border-2 border-gray-200 focus:border-blue-500">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
